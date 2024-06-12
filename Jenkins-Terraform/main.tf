@@ -45,7 +45,7 @@ resource "aws_instance" "jenkins" {
 }
 
 resource "aws_eip" "jenkins_eip" {
-  vpc = true
+  domain = "vpc"
 
   tags = {
     Name = "jenkins-eip"
