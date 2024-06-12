@@ -26,7 +26,7 @@ resource "aws_security_group" "ecs-sg" {
     to_port     = 65535
     protocol    = "tcp"
     cidr_blocks = []
-    security_groups = [ aws_security_group.lb_sg ]
+    security_groups = [ aws_security_group.lb_sg.id ]
   }
 
   egress {
