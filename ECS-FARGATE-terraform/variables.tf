@@ -15,5 +15,5 @@ variable "vpc_cidr" {
 # availability zones variable
 variable "availability_zones" {
   type    = string
-  default = "us-east-1a"
+  default = "ap-south-1"
 }
