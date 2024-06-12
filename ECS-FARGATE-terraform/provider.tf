@@ -6,7 +6,6 @@ terraform {
     }
   }
 }
-provider "docker" {}
 
 # Configure the AWS Provider
 provider "aws" {

@@ -30,7 +30,7 @@ resource "aws_security_group" "Jenkins-sg" {
 }
 
 resource "aws_instance" "jenkins" {
-  ami                    = "ami-0f58b397bc5c1f2e8"  #change your ami value according to your aws instance
+  ami                    = var.ami  #change your ami value according to your aws instance
   instance_type          = var.instance_type
   vpc_security_group_ids = [aws_security_group.Jenkins-sg.id]
   user_data              = templatefile("./script/script.sh", {})

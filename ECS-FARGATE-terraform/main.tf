@@ -9,7 +9,7 @@ resource "aws_ecs_cluster" "cluster" {
 }
 
 resource "aws_ecs_task_definition" "task" {
-  family                   = "service"
+  family                   = "tomacat-service"
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE", "EC2"]
   cpu                      = 512
@@ -18,7 +18,7 @@ resource "aws_ecs_task_definition" "task" {
   [
     {
       "name"      : "zivver-repo",
-      "image"     : "zivver-repo:latest",
+      "image"     : "637423474653.dkr.ecr.ap-south-1.amazonaws.com/zivver-repo:latest",
       "cpu"       : 512,
       "memory"    : 2048,
       "essential" : true,
