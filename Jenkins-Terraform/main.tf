@@ -41,4 +41,18 @@ resource "aws_instance" "jenkins" {
   root_block_device {
     volume_size = 15
   }
+  depends_on = [aws_eip.jenkins_eip]
+}
+
+resource "aws_eip" "jenkins_eip" {
+  vpc = true
+
+  tags = {
+    Name = "jenkins-eip"
+  }
+}
+
+resource "aws_eip_association" "eip_assoc" {
+  instance_id   = aws_instance.jenkins.id
+  allocation_id = aws_eip.jenkins_eip.id
 }
