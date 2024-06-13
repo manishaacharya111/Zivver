@@ -37,7 +37,7 @@ pipeline {
         } 
         stage('Deploy') {
             steps {
-                // script {
+                script {
                 // //login 
                 // docker.withRegistry(vprofileRegistry, ecrRegistryCredential){
                 // }
