@@ -3,7 +3,7 @@ resource "aws_appautoscaling_target" "ecsag" {
   min_capacity       = 1
   resource_id        = "service/${aws_ecs_cluster.cluster.name}/${aws_ecs_service.service.name}"
   scalable_dimension = "ecsag:service:DesiredCount"
-  service_namespace  = "ecsag"
+  service_namespace  = "ecs"
 }
 
 resource "aws_appautoscaling_policy" "scale_up" {
