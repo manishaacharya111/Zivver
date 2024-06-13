@@ -44,7 +44,12 @@ resource "aws_ecs_service" "service" {
   network_configuration {
     assign_public_ip = true
     security_groups  = [aws_security_group.ecs-sg.id]
-    subnets          = [aws_subnet.subnet.id]
+    subnets          = [aws_subnet.subnet_a.id, aws_subnet.subnet_b.id]
+  }
+  load_balancer {
+    target_group_arn = aws_lb_target_group.lb_target_group.arn
+    container_name   = "zivver-repo"
+    container_port   = 80
   }
   lifecycle {
     ignore_changes = [task_definition]
