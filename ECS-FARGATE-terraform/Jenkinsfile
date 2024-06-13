@@ -1,0 +1,48 @@
+pipeline{
+   agent any
+   environment {
+    AWS_ACCESS_KEY_ID = credentials('aws-cred')
+    AWS_SECRET_ACCESS_KEY = credentials('aws-cred')
+ }
+   stages {
+       stage('Checkout from Git'){
+           steps{
+               git branch: 'main', url: 'https://github.com/manishaacharya111/Zivver.git'
+           }
+       }
+       stage('Terraform version'){
+            steps{
+                sh 'terraform --version'
+            }
+       }
+       stage('Terraform init'){
+           steps{
+                dir('ECS-FARGATE-terraform') {
+                     sh 'terraform init'
+                  }
+            }
+       }
+       stage('Terraform validate'){
+            steps{
+                dir('ECS-FARGATE-terraform') {
+                     sh 'terraform validate'
+                  }
+            }
+       }
+       stage('Terraform plan'){
+            steps{
+                dir('ECS-FARGATE-terraform') {
+                     sh 'terraform plan'
+                  }
+            }
+       }
+       stage('Terraform apply/destroy'){
+            steps{
+                dir('ECS-FARGATE-terraform') {
+                     sh 'terraform ${action} --auto-approve'
+                  }
+            }
+       }
+   }
+}
+
