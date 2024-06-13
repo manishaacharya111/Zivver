@@ -3,7 +3,7 @@ pipeline {
     
     environment {
         region = "ap-south-1"
-        ecrRegistryCredential = 'ecr:ap-south-1:aws-cred'
+        //ecrRegistryCredential = 'ecr:ap-south-1:aws-cred'
         registryURI =   "637423474653.dkr.ecr.ap-south-1.amazonaws.com/zivver-repo"
         vprofileRegistry = "https://637423474653.dkr.ecr.ap-south-1.amazonaws.com"
         cluster = "cluster"
@@ -25,20 +25,22 @@ pipeline {
         stage('Upload App Image') {
             steps{
                 script {
-                    docker.withRegistry(vprofileRegistry, ecrRegistryCredential) {
-                    dockerImage.push ("$BUILD_NUMBER")
-                    dockerImage.push('latest')
+                    // docker.withRegistry(vprofileRegistry, ecrRegistryCredential) {
+                    // dockerImage.push ("$BUILD_NUMBER")
+                    // dockerImage.push('latest')
+                    //ecr login 
+                    aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 637423474653.dkr.ecr.ap-south-1.amazonaws.com
+                    sh 'docker push ${registryURI}:$BUILD_NUMBER'
                     }
                 }
             }   
         } 
         stage('Deploy') {
             steps {
-                script {
-                //login 
-                docker.withRegistry(vprofileRegistry, ecrRegistryCredential){
-
-                }
+                // script {
+                // //login 
+                // docker.withRegistry(vprofileRegistry, ecrRegistryCredential){
+                // }
                 // Override image field in taskdef file
                     sh "sed -i 's|{{image}}|${registryURI}:${BUILD_NUMBER}|' taskdef.json"
                 // Create a new task definition revision
