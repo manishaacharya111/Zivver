@@ -1,0 +1,57 @@
+{
+    "taskDefinitionArn": "arn:aws:ecs:ap-south-1:637423474653:task-definition/tomacat-service:10",
+    "containerDefinitions": [
+        {
+            "name": "zivver-repo",
+            "image": "637423474653.dkr.ecr.ap-south-1.amazonaws.com/zivver-repo:latest",
+            "cpu": 512,
+            "memory": 2048,
+            "portMappings": [
+                {
+                    "containerPort": 8080,
+                    "hostPort": 8080,
+                    "protocol": "tcp"
+                }
+            ],
+            "essential": true,
+            "environment": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "systemControls": []
+        }
+    ],
+    "family": "tomacat-service",
+    "executionRoleArn": "arn:aws:iam::637423474653:role/ecsTaskExecutionRole",
+    "networkMode": "awsvpc",
+    "revision": 10,
+    "volumes": [],
+    "status": "ACTIVE",
+    "requiresAttributes": [
+        {
+            "name": "com.amazonaws.ecs.capability.ecr-auth"
+        },
+        {
+            "name": "ecs.capability.execution-role-ecr-pull"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+        },
+        {
+            "name": "ecs.capability.task-eni"
+        }
+    ],
+    "placementConstraints": [],
+    "compatibilities": [
+        "EC2",
+        "FARGATE"
+    ],
+    "requiresCompatibilities": [
+        "EC2",
+        "FARGATE"
+    ],
+    "cpu": "512",
+    "memory": "2048",
+    "registeredAt": "2024-06-13T17:45:51.970Z",
+    "registeredBy": "arn:aws:iam::637423474653:user/terraform1",
+    "tags": []
+}
