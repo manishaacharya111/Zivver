@@ -12,22 +12,15 @@
                     "protocol": "tcp"
                 }
             ],
-            "essential": true,
-            "environment": [],
-            "mountPoints": [],
-            "volumesFrom": [],
-            "systemControls": []
+            "essential": true
         }
     ],
     "family": "tomacat-service",
     "executionRoleArn": "arn:aws:iam::637423474653:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
-    "volumes": [],
-    "placementConstraints": [],
     "requiresCompatibilities": [
         "FARGATE"
     ],
     "cpu": "512",
-    "memory": "2048",
-    "tags": []
+    "memory": "2048"
 }
