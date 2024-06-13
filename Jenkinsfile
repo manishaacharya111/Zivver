@@ -3,7 +3,7 @@ pipeline {
     
     environment {
         region = "ap-south-1"
-        ecrRegistryCredential = 'ecr:ap-south-1:terraform-new'
+        ecrRegistryCredential = 'ecr:ap-south-1:aws-cred'
         registryURI =   "637423474653.dkr.ecr.ap-south-1.amazonaws.com/zivver-repo"
         vprofileRegistry = "https://637423474653.dkr.ecr.ap-south-1.amazonaws.com"
         cluster = "cluster"
@@ -23,7 +23,7 @@ pipeline {
         stage('Upload App Image') {
             steps{
                 script {
-                    docker.withRegistry( vprofileRegistry, ecrRegistryCredential) {
+                    docker.withRegistry(vprofileRegistry, ecrRegistryCredential) {
                     dockerImage.push ("$BUILD_NUMBER")
                     dockerImage.push('latest')
                     }
