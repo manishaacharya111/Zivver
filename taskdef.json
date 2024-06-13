@@ -2,7 +2,7 @@
     "containerDefinitions": [
         {
             "name": "zivver-repo",
-            "image": "637423474653.dkr.ecr.ap-south-1.amazonaws.com/zivver-repo:latest",
+            "image": "{{image}}",
             "cpu": 512,
             "memory": 2048,
             "portMappings": [
