@@ -1,35 +1,33 @@
-{
-    "executionRoleArn": "arn:aws:iam::637423474653:role/ecsTaskExecutionRole",
+{   
     "containerDefinitions": [
         {
+            "name": "zivver-repo",
+            "image": "637423474653.dkr.ecr.ap-south-1.amazonaws.com/zivver-repo:latest",
+            "cpu": 512,
+            "memory": 2048,
             "portMappings": [
                 {
+                    "containerPort": 8080,
                     "hostPort": 8080,
-                    "protocol": "tcp",
-                    "containerPort": 8080
+                    "protocol": "tcp"
                 }
             ],
-            "cpu": 512,
-            "memory": "2048",
+            "essential": true,
             "environment": [],
-            "ulimits": [],
             "mountPoints": [],
             "volumesFrom": [],
-            "image": "637423474653.dkr.ecr.ap-south-1.amazonaws.com/zivver-repo:latest",
-            "essential": true,
-            "name": "zivver-repo"
+            "systemControls": []
         }
     ],
     "family": "tomacat-service",
-    "compatibilities": [
-        "EC2",
-        "FARGATE"
-    ],
+    "executionRoleArn": "arn:aws:iam::637423474653:role/ecsTaskExecutionRole",
+    "networkMode": "awsvpc",
+    "volumes": [],
+    "placementConstraints": [],
     "requiresCompatibilities": [
         "FARGATE"
     ],
-    "networkMode": "awsvpc",
     "cpu": "512",
-    "memory": "2048"
-
+    "memory": "2048",
+    "tags": []
 }
