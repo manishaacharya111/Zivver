@@ -20,7 +20,7 @@ pipeline {
         }
         
         // Upload docker image to ECR
-    stage('Upload App Image') {
+        stage('Upload App Image') {
             steps{
                 script {
                     docker.withRegistry( vprofileRegistry, ecrRegistryCredential) {
@@ -30,16 +30,16 @@ pipeline {
                 }
             }   
         } 
-    } 
-    stage('Deploy') {
-        steps {
-            script {
+        stage('Deploy') {
+            steps {
+                script {
                 // Override image field in taskdef file
-                sh "sed -i 's|{{image}}|${registryURI}:${BUILD_NUMBER}|' taskdef.json"
+                    sh "sed -i 's|{{image}}|${registryURI}:${BUILD_NUMBER}|' taskdef.json"
                 // Create a new task definition revision
-                sh "aws ecs register-task-definition --cli-input-json file://taskdef.json --region ${region}"
+                    sh "aws ecs register-task-definition --cli-input-json file://taskdef.json --region ${region}"
                 // Update service
-                sh "aws ecs update-service --cluster ${cluster} --service service --task-definition ${task_def_arn} --region ${region}"
+                    sh "aws ecs update-service --cluster ${cluster} --service service --task-definition ${task_def_arn} --region ${region}"
+                }
             }
         }
     }
