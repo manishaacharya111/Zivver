@@ -15,7 +15,7 @@ resource "aws_lb_target_group" "lb_target_group" {
 
   health_check {
     path                = "/"
-    port                = 80
+    port                = 8080
     protocol            = "HTTP"
     healthy_threshold   = 2
     unhealthy_threshold = 2
@@ -25,7 +25,7 @@ resource "aws_lb_target_group" "lb_target_group" {
 }
 resource "aws_lb_listener" "ecs_listener" {
   load_balancer_arn = aws_lb.lb.arn
-  port              = "80"
+  port              = "8080"
   protocol          = "HTTP"
 
   default_action {

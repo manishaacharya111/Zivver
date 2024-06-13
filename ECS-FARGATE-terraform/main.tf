@@ -25,8 +25,8 @@ resource "aws_ecs_task_definition" "task" {
       "essential" : true,
       "portMappings" : [
         {
-          "containerPort" : 80,
-          "hostPort"      : 80
+          "containerPort" : 8080,
+          "hostPort"      : 8080
         }
       ]
     }
@@ -50,7 +50,7 @@ resource "aws_ecs_service" "service" {
   load_balancer {
     target_group_arn = aws_lb_target_group.lb_target_group.arn
     container_name   = "zivver-repo"
-    container_port   = 80
+    container_port   = 8080
   }
   lifecycle {
     ignore_changes = [task_definition]
