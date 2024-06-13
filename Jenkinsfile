@@ -8,6 +8,8 @@ pipeline {
         vprofileRegistry = "https://637423474653.dkr.ecr.ap-south-1.amazonaws.com"
         cluster = "cluster"
         task_def_arn = "arn:aws:ecs:ap-south-1:637423474653:task-definition/tomacat-service"
+        AWS_ACCESS_KEY_ID = credentials('aws-cred')
+        AWS_SECRET_ACCESS_KEY = credentials('aws-cred')
 
     }
     stages {
@@ -33,6 +35,10 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
+                //login 
+                docker.withRegistry(vprofileRegistry, ecrRegistryCredential){
+
+                }
                 // Override image field in taskdef file
                     sh "sed -i 's|{{image}}|${registryURI}:${BUILD_NUMBER}|' taskdef.json"
                 // Create a new task definition revision
