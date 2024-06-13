@@ -29,7 +29,7 @@ pipeline {
                     // dockerImage.push ("$BUILD_NUMBER")
                     // dockerImage.push('latest')
                     //ecr login 
-                    aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 637423474653.dkr.ecr.ap-south-1.amazonaws.com
+                    sh 'aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 637423474653.dkr.ecr.ap-south-1.amazonaws.com'
                     sh 'docker push ${registryURI}:$BUILD_NUMBER'
                     }
                 }
