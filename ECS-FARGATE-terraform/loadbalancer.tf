@@ -2,6 +2,7 @@ resource "aws_lb" "lb" {
   name               = "lb"
   internal           = false
   load_balancer_type = "application"
+  subnets = 
   security_groups    = [aws_security_group.lb_sg.id]
 }
 
