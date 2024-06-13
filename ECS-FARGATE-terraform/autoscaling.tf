@@ -1,16 +1,16 @@
-resource "aws_appautoscaling_target" "ecsag" {
+resource "aws_appautoscaling_target" "ecs" {
   max_capacity       = 4
   min_capacity       = 1
   resource_id        = "service/${aws_ecs_cluster.cluster.name}/${aws_ecs_service.service.name}"
-  scalable_dimension = "ecsag:service:DesiredCount"
+  scalable_dimension = "ecs:service:DesiredCount"
   service_namespace  = "ecs"
 }
 
 resource "aws_appautoscaling_policy" "scale_up" {
   name               = "scale-up"
   service_namespace  = "ecs"
-  resource_id        = aws_appautoscaling_target.ecsag.resource_id
-  scalable_dimension = aws_appautoscaling_target.ecsag.scalable_dimension
+  resource_id        = aws_appautoscaling_target.ecs.resource_id
+  scalable_dimension = aws_appautoscaling_target.ecs.scalable_dimension
   policy_type        = "StepScaling"
 
   step_scaling_policy_configuration {
@@ -25,8 +25,8 @@ resource "aws_appautoscaling_policy" "scale_up" {
 resource "aws_appautoscaling_policy" "scale_down" {
   name               = "scale-down"
   service_namespace  = "ecs"
-  resource_id        = aws_appautoscaling_target.ecsag.resource_id
-  scalable_dimension = aws_appautoscaling_target.ecsag.scalable_dimension
+  resource_id        = aws_appautoscaling_target.ecs.resource_id
+  scalable_dimension = aws_appautoscaling_target.ecs.scalable_dimension
   policy_type        = "StepScaling"
 
   step_scaling_policy_configuration {

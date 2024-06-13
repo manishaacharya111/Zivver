@@ -10,7 +10,7 @@ resource "aws_ecs_cluster" "cluster" {
 
 resource "aws_ecs_task_definition" "task" {
   family                   = "tomacat-service"
-  execution_role_arn       = aws_iam_role.ecs_execution_role.arn
+  execution_role_arn       = "arn:aws:iam::637423474653:role/ecsTaskExecutionRole"
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE", "EC2"]
   cpu                      = 512
