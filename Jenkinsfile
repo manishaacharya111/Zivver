@@ -43,7 +43,7 @@ pipeline {
                 }
             }   
         } 
-        /*stage('Deploy') {
+        //stage('Deploy') {
             steps {
                 script {
                 // //login 
@@ -58,6 +58,6 @@ pipeline {
                     sh "aws ecs update-service --cluster ${cluster} --service service --task-definition ${task_def_arn} --region ${region}"
                 }
             }
-        }*/
+        } //
     }
 } 
