@@ -7,11 +7,11 @@ This repository contains the implementation of the Zivver task. The task involve
 
 Reference directory in Repos: Zivver/Jenkins-Terraform
 
-Pre-requisites:
+**Pre-requisites:**
 
 Ensure you have an AWS account and a IAM user created[have provided the AdministratorAccess] & “aws configure” is done in the local machine to authenticate on behalf of you to use the AWS services.
 
-Create Terraform Configuration:
+# Create Terraform Configuration:
 
 backend.tf: Defines the Terraform state backend configuration using S3 and DynamoDB for locking.  I have created the S3 bucket and dynamoDB table already and defined here.
 
@@ -23,7 +23,8 @@ main.tf: Defines AWS resources including security group, instance, and associate
 
 output.tf: Outputs the Jenkins instance's Elastic IP address.
 
-Create Installation Script (script.sh): Bash script is incorporated to be executed on the Jenkins instance once the instance is up and running. We have below installations:
+# Create Installation Script (script.sh):
+Bash script is incorporated to be executed on the Jenkins instance once the instance is up and running. We have below installations:
 System updates
 Java
 Jenkins
